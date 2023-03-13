@@ -67,6 +67,7 @@ def register_page(request):
 
 
 def home(request):
+    room = Room.objects.all()
     q = request.GET.get('q') if request.GET.get('q') != None else ''
 
     rooms = Room.objects.filter(
@@ -76,7 +77,7 @@ def home(request):
     )
     topics = Topic.objects.all()[0:6]
     room_messages = Message.objects.all()
-    rooms_count = Room.objects.count()
+    rooms_count = room.count()
 
     context = {
         'rooms': rooms,
